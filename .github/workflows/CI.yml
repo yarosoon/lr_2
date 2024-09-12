@@ -1,28 +1,34 @@
 name: CMake
 
+
 on:
-  push:
-    branches: [master]
-  pull_request:
-    branches: [master]
+ push:
+  branches: [master]
+ pull_request:
+  branches: [master]
 
-jobs: 
-  build_Linux:
-    runs-on: ubuntu-latest
+jobs:
+ Tests:
 
-    steps:
-      - uses: actions/checkout@v3
+  runs-on: ubuntu-latest
 
-      - name: Set up CMake
-        run: sudo apt-get install -y cmake
+  steps:
+  - uses: actions/checkout@v3
 
-      - name: Configure with CMake
-        run: cmake -S . -B build -DBUILD_TESTS=ON
+  - name: Adding gtest
+    run: git clone https://github.com/google/googletest.git third-party/gtest -b release-1.11.0
 
-      - name: Build with CMake
-        run: cmake --build build
+  - name: Install lcov
+    run: sudo apt-get install -y lcov
 
-      - name: Run Tests
-        run: |
-          cd build
-          ctest --output-on-failure
+  - name: Config Stratergy with tests
+    run: cmake -H. -B ${{github.workspace}}/build -DBUILD_TESTS=ON
+
+  - name: Build Stratergy
+    run: cmake --build ${{github.workspace}}/build
+
+  - name: Run tests
+    run: build/check
+    
+  - name: Do lcov stuff
+    run: lcov -c -d build/CMakeFiles/Stratergy.dir/Stratergy/ --include *.cpp --output-file ./coverage/lcov.info    
