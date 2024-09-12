@@ -1,0 +1,2 @@
+/home/ubuntu/yarosoon/workspace/projects/lr_2/_build/CMakeFiles/edit_cache.dir
+/home/ubuntu/yarosoon/workspace/projects/lr_2/_build/CMakeFiles/rebuild_cache.dir
