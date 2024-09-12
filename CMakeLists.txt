@@ -1,0 +1,22 @@
+cmake_minimum_required(VERSION 3.4)
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+option(BUILD_EXAMPLES "Build examples" OFF)
+
+project(strategy)
+
+install(TARGETS strategy
+    EXPORT strategy-config
+    ARCHIVE DESTINATION lib
+    LIBRARY DESTINATION lib
+)
+
+ add_subdirectory(googletest) 
+
+   include_directories(${gtest_SOURCE_DIR}/include)
+
+   add_executable(runTests test1.cpp) 
+
+   target_link_libraries(runTests gtest gtest_main)
