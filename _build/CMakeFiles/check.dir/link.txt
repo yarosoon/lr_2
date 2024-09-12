@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/check.dir/tests/test1.cpp.o -o check  libStratergy.a lib/libgtest_main.a lib/libgmock_main.a lib/libgmock.a lib/libgtest.a 

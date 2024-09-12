@@ -65,6 +65,16 @@ CMAKE_BINARY_DIR = /home/ubuntu/yarosoon/workspace/projects/lr_2/_build
 #=============================================================================
 # Targets provided globally by CMake.
 
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+.PHONY : test/fast
+
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -84,6 +94,51 @@ rebuild_cache:
 # Special rule for the target rebuild_cache
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"gmock\" \"gtest\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+.PHONY : list_install_components/fast
+
+# Special rule for the target install
+install: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install
+
+# Special rule for the target install
+install/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
+	/usr/bin/cmake -P cmake_install.cmake
+.PHONY : install/fast
+
+# Special rule for the target install/local
+install/local: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local
+
+# Special rule for the target install/local
+install/local/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
+	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
+.PHONY : install/local/fast
+
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
+
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -116,6 +171,204 @@ depend:
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
+#=============================================================================
+# Target rules for targets named Stratergy
+
+# Build rule for target.
+Stratergy: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Stratergy
+.PHONY : Stratergy
+
+# fast build rule for target.
+Stratergy/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/build
+.PHONY : Stratergy/fast
+
+#=============================================================================
+# Target rules for targets named check
+
+# Build rule for target.
+check: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 check
+.PHONY : check
+
+# fast build rule for target.
+check/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/build
+.PHONY : check/fast
+
+#=============================================================================
+# Target rules for targets named gmock
+
+# Build rule for target.
+gmock: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock
+.PHONY : gmock
+
+# fast build rule for target.
+gmock/fast:
+	$(MAKE) $(MAKESILENT) -f third-party/googletest/googlemock/CMakeFiles/gmock.dir/build.make third-party/googletest/googlemock/CMakeFiles/gmock.dir/build
+.PHONY : gmock/fast
+
+#=============================================================================
+# Target rules for targets named gmock_main
+
+# Build rule for target.
+gmock_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gmock_main
+.PHONY : gmock_main
+
+# fast build rule for target.
+gmock_main/fast:
+	$(MAKE) $(MAKESILENT) -f third-party/googletest/googlemock/CMakeFiles/gmock_main.dir/build.make third-party/googletest/googlemock/CMakeFiles/gmock_main.dir/build
+.PHONY : gmock_main/fast
+
+#=============================================================================
+# Target rules for targets named gtest
+
+# Build rule for target.
+gtest: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest
+.PHONY : gtest
+
+# fast build rule for target.
+gtest/fast:
+	$(MAKE) $(MAKESILENT) -f third-party/googletest/googletest/CMakeFiles/gtest.dir/build.make third-party/googletest/googletest/CMakeFiles/gtest.dir/build
+.PHONY : gtest/fast
+
+#=============================================================================
+# Target rules for targets named gtest_main
+
+# Build rule for target.
+gtest_main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 gtest_main
+.PHONY : gtest_main
+
+# fast build rule for target.
+gtest_main/fast:
+	$(MAKE) $(MAKESILENT) -f third-party/googletest/googletest/CMakeFiles/gtest_main.dir/build.make third-party/googletest/googletest/CMakeFiles/gtest_main.dir/build
+.PHONY : gtest_main/fast
+
+Behavioral/Stratergy/ConcreteStratergyA.o: Behavioral/Stratergy/ConcreteStratergyA.cpp.o
+.PHONY : Behavioral/Stratergy/ConcreteStratergyA.o
+
+# target to build an object file
+Behavioral/Stratergy/ConcreteStratergyA.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/ConcreteStratergyA.cpp.o
+.PHONY : Behavioral/Stratergy/ConcreteStratergyA.cpp.o
+
+Behavioral/Stratergy/ConcreteStratergyA.i: Behavioral/Stratergy/ConcreteStratergyA.cpp.i
+.PHONY : Behavioral/Stratergy/ConcreteStratergyA.i
+
+# target to preprocess a source file
+Behavioral/Stratergy/ConcreteStratergyA.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/ConcreteStratergyA.cpp.i
+.PHONY : Behavioral/Stratergy/ConcreteStratergyA.cpp.i
+
+Behavioral/Stratergy/ConcreteStratergyA.s: Behavioral/Stratergy/ConcreteStratergyA.cpp.s
+.PHONY : Behavioral/Stratergy/ConcreteStratergyA.s
+
+# target to generate assembly for a file
+Behavioral/Stratergy/ConcreteStratergyA.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/ConcreteStratergyA.cpp.s
+.PHONY : Behavioral/Stratergy/ConcreteStratergyA.cpp.s
+
+Behavioral/Stratergy/ConcreteStratergyB.o: Behavioral/Stratergy/ConcreteStratergyB.cpp.o
+.PHONY : Behavioral/Stratergy/ConcreteStratergyB.o
+
+# target to build an object file
+Behavioral/Stratergy/ConcreteStratergyB.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/ConcreteStratergyB.cpp.o
+.PHONY : Behavioral/Stratergy/ConcreteStratergyB.cpp.o
+
+Behavioral/Stratergy/ConcreteStratergyB.i: Behavioral/Stratergy/ConcreteStratergyB.cpp.i
+.PHONY : Behavioral/Stratergy/ConcreteStratergyB.i
+
+# target to preprocess a source file
+Behavioral/Stratergy/ConcreteStratergyB.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/ConcreteStratergyB.cpp.i
+.PHONY : Behavioral/Stratergy/ConcreteStratergyB.cpp.i
+
+Behavioral/Stratergy/ConcreteStratergyB.s: Behavioral/Stratergy/ConcreteStratergyB.cpp.s
+.PHONY : Behavioral/Stratergy/ConcreteStratergyB.s
+
+# target to generate assembly for a file
+Behavioral/Stratergy/ConcreteStratergyB.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/ConcreteStratergyB.cpp.s
+.PHONY : Behavioral/Stratergy/ConcreteStratergyB.cpp.s
+
+Behavioral/Stratergy/Context.o: Behavioral/Stratergy/Context.cpp.o
+.PHONY : Behavioral/Stratergy/Context.o
+
+# target to build an object file
+Behavioral/Stratergy/Context.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/Context.cpp.o
+.PHONY : Behavioral/Stratergy/Context.cpp.o
+
+Behavioral/Stratergy/Context.i: Behavioral/Stratergy/Context.cpp.i
+.PHONY : Behavioral/Stratergy/Context.i
+
+# target to preprocess a source file
+Behavioral/Stratergy/Context.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/Context.cpp.i
+.PHONY : Behavioral/Stratergy/Context.cpp.i
+
+Behavioral/Stratergy/Context.s: Behavioral/Stratergy/Context.cpp.s
+.PHONY : Behavioral/Stratergy/Context.s
+
+# target to generate assembly for a file
+Behavioral/Stratergy/Context.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/Context.cpp.s
+.PHONY : Behavioral/Stratergy/Context.cpp.s
+
+Behavioral/Stratergy/main.o: Behavioral/Stratergy/main.cpp.o
+.PHONY : Behavioral/Stratergy/main.o
+
+# target to build an object file
+Behavioral/Stratergy/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/main.cpp.o
+.PHONY : Behavioral/Stratergy/main.cpp.o
+
+Behavioral/Stratergy/main.i: Behavioral/Stratergy/main.cpp.i
+.PHONY : Behavioral/Stratergy/main.i
+
+# target to preprocess a source file
+Behavioral/Stratergy/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/main.cpp.i
+.PHONY : Behavioral/Stratergy/main.cpp.i
+
+Behavioral/Stratergy/main.s: Behavioral/Stratergy/main.cpp.s
+.PHONY : Behavioral/Stratergy/main.s
+
+# target to generate assembly for a file
+Behavioral/Stratergy/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Stratergy.dir/build.make CMakeFiles/Stratergy.dir/Behavioral/Stratergy/main.cpp.s
+.PHONY : Behavioral/Stratergy/main.cpp.s
+
+tests/test1.o: tests/test1.cpp.o
+.PHONY : tests/test1.o
+
+# target to build an object file
+tests/test1.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/tests/test1.cpp.o
+.PHONY : tests/test1.cpp.o
+
+tests/test1.i: tests/test1.cpp.i
+.PHONY : tests/test1.i
+
+# target to preprocess a source file
+tests/test1.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/tests/test1.cpp.i
+.PHONY : tests/test1.cpp.i
+
+tests/test1.s: tests/test1.cpp.s
+.PHONY : tests/test1.s
+
+# target to generate assembly for a file
+tests/test1.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/check.dir/build.make CMakeFiles/check.dir/tests/test1.cpp.s
+.PHONY : tests/test1.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -123,7 +376,33 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
+	@echo "... install"
+	@echo "... install/local"
+	@echo "... install/strip"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
+	@echo "... test"
+	@echo "... Stratergy"
+	@echo "... check"
+	@echo "... gmock"
+	@echo "... gmock_main"
+	@echo "... gtest"
+	@echo "... gtest_main"
+	@echo "... Behavioral/Stratergy/ConcreteStratergyA.o"
+	@echo "... Behavioral/Stratergy/ConcreteStratergyA.i"
+	@echo "... Behavioral/Stratergy/ConcreteStratergyA.s"
+	@echo "... Behavioral/Stratergy/ConcreteStratergyB.o"
+	@echo "... Behavioral/Stratergy/ConcreteStratergyB.i"
+	@echo "... Behavioral/Stratergy/ConcreteStratergyB.s"
+	@echo "... Behavioral/Stratergy/Context.o"
+	@echo "... Behavioral/Stratergy/Context.i"
+	@echo "... Behavioral/Stratergy/Context.s"
+	@echo "... Behavioral/Stratergy/main.o"
+	@echo "... Behavioral/Stratergy/main.i"
+	@echo "... Behavioral/Stratergy/main.s"
+	@echo "... tests/test1.o"
+	@echo "... tests/test1.i"
+	@echo "... tests/test1.s"
 .PHONY : help
 
 

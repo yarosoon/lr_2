@@ -3,20 +3,19 @@ cmake_minimum_required(VERSION 3.4)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-option(BUILD_EXAMPLES "Build examples" OFF)
+option(BUILD_TESTS "Build tests" OFF)
 
-project(strategy)
+project(Stratergy)
 
-install(TARGETS strategy
-    EXPORT strategy-config
-    ARCHIVE DESTINATION lib
-    LIBRARY DESTINATION lib
-)
+ add_library(Stratergy STATIC ${CMAKE_CURRENT_SOURCE_DIR}/Behavioral/Stratergy/main.cpp ${CMAKE_CURRENT_SOURCE_DIR}/Behavioral/Stratergy/ConcreteStratergyA.cpp ${CMAKE_CURRENT_SOURCE_DIR}/Behavioral/Stratergy/ConcreteStratergyB.cpp ${CMAKE_CURRENT_SOURCE_DIR}/Behavioral/Stratergy/Context.cpp)
+target_include_directories(Stratergy PUBLIC
+${CMAKE_CURRENT_SOURCE_DIR}/Behavioral/Stratergy )
 
- add_subdirectory(googletest) 
-
-   include_directories(${gtest_SOURCE_DIR}/include)
-
-   add_executable(runTests test1.cpp) 
-
-   target_link_libraries(runTests gtest gtest_main)
+if(BUILD_TESTS)
+  enable_testing()
+  add_subdirectory(third-party/googletest)
+  file(GLOB Stratergy_TEST_SOURCES tests/*.cpp)
+  add_executable(check ${Stratergy_TEST_SOURCES})
+  target_link_libraries(check Stratergy gtest_main gmock_main)
+  add_test(NAME check COMMAND check)
+endif()

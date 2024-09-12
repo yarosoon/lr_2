@@ -1,0 +1,2 @@
+/usr/bin/ar qc libStratergy.a CMakeFiles/Stratergy.dir/Behavioral/Stratergy/main.cpp.o CMakeFiles/Stratergy.dir/Behavioral/Stratergy/ConcreteStratergyA.cpp.o CMakeFiles/Stratergy.dir/Behavioral/Stratergy/ConcreteStratergyB.cpp.o CMakeFiles/Stratergy.dir/Behavioral/Stratergy/Context.cpp.o
+/usr/bin/ranlib libStratergy.a
