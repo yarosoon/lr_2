@@ -19,14 +19,4 @@ jobs:
       - name: Build Strategy
         run: cmake --build ${{github.workspace}}/Behavioral/Stratergy/build
 
-  build_Windows:
-    runs-on: windows-latest
 
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Configure Strategy
-        run: cmake ${{github.workspace}}/Behavioral/Stratergy/ -B ${{github.workspace}}/Behavioral/Stratergy/build
-
-      - name: Build Strategy
-        run: cmake --build ${{github.workspace}}/Behavioral/Stratergy/build

@@ -13,3 +13,10 @@ install(TARGETS strategy
     LIBRARY DESTINATION lib
 )
 
+ add_subdirectory(googletest) 
+
+   include_directories(${gtest_SOURCE_DIR}/include)
+
+   add_executable(runTests test1.cpp) 
+
+   target_link_libraries(runTests gtest gtest_main)
